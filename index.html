@@ -22,7 +22,9 @@
             --sidebar-bg: #121212;
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
-            --accent: #FA7921;
+            --accent: #FA7921; /* Work - Orange */
+            --edu-color: #3498db; /* Education - Blue */
+            --proj-color: #9b59b6; /* Project - Purple */
             --albumback: #FE9920;
             --border: #282828;
             --sidebar-width: 340px;
@@ -53,77 +55,52 @@
         /* --- TIMELINE --- */
         .timeline { position: relative; padding-left: 40px; border-left: 1px solid var(--border); }
         .timeline-item { position: relative; margin-bottom: 80px; }
+        .timeline-item.education::before { background: var(--edu-color); }
+        .timeline-item.project::before { background: var(--proj-color); }
+        .timeline-item.dimmed { opacity: 0.1; transform: scale(0.98); pointer-events: none; }
         .timeline-item::before { content: ''; position: absolute; left: -45px; top: 12px; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; }
         .company-header {display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
         
-        /* Updated Logo Constraints */
-        .company-logo { 
-            width: 45px; 
-            height: 45px; 
-            max-width: 45px;
-            max-height: 45px;
-            object-fit: contain; 
-            background: transparent; 
-            flex-shrink: 0;
-        }
+        /* Category Colors */
+        .timeline-item.education::before { background: var(--edu-color); }
+        .timeline-item.project::before { background: var(--proj-color); }
+        .timeline-item.dimmed { opacity: 0.1; transform: scale(0.98); pointer-events: none; }
+
+        .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+        .company-logo { width: 45px; height: 45px; max-width: 45px; max-height: 45px; object-fit: contain; flex-shrink: 0; }
         
-        .logo-placeholder {width: 45px; height: 45px; object-fit: contain; /* Ensures logos aren't stretched */ background: transparent; border-radius: 4px; flex-shrink: 0;}
         .role { font-size: 1.2rem; font-weight: 600; }
         .company { color: var(--accent); font-size: 1rem; }
-        .duration { font-size: 0.85rem; color: var(--text-dim); margin-top: 4px; margin-bottom: 12px; }
+        .timeline-item.education .company { color: var(--edu-color); }
+        .timeline-item.project .company { color: var(--proj-color); }
         
-        .description-list { font-size: 0.95rem; color: var(--text-dim); max-width: 750px; line-height: 1.7; margin-bottom: 25px; padding-left: 18px; }
-        .description-list li { margin-bottom: 8px; }
+        .duration { font-size: 0.85rem; color: var(--text-dim); margin-top: 4px; margin-bottom: 12px; }
+        .description-list { font-size: 0.95rem; color: var(--text-dim); max-width: 750px; line-height: 1.7; padding-left: 18px; }
 
-        /* --- ALBUM FLIP CARDS --- */
+        /* --- FLIP CARDS --- */
         .album-grid { display: flex; gap: 20px; margin-top: 20px; }
-        .flip-card { background-color: transparent; width: 120px; height: 120px; perspective: 1000px; }
-        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card { width: 120px; height: 120px; perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
         .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 4px; overflow: hidden; }
-        .flip-card-front img { width: 100%; height: 100%; object-fit: cover; background: #222; }
-        .flip-card-back { background-color: var(--albumback); color: black; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 10px; font-size: 0.7rem; font-weight: 600; }
+        .flip-card-front img { width: 100%; height: 100%; object-fit: cover; }
+        .flip-card-back { background-color: var(--albumback); color: black; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 10px; font-size: 0.7rem; font-weight: 600; text-align: center; }
 
-        /* --- GALLERY --- */
-        .gallery-container { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 30px; scroll-behavior: smooth; scrollbar-width: none; }
-        .gallery-container::-webkit-scrollbar { display: none; }
+        /* --- INFINITE GALLERY --- */
+        .gallery-viewport { overflow: hidden; width: 100%; position: relative; cursor: grab; }
+        .gallery-container { display: flex; gap: 15px; width: max-content; }
         .gallery-item { flex: 0 0 auto; height: 500px; }
         .gallery-item img { height: 100%; width: auto; display: block; border-radius: 4px; }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 850px) {
-            body {
-                flex-direction: column; /* Stack sidebar on top of content */
-            }
-        
-            .sidebar {
-                width: 100%;
-                height: auto; /* Let it shrink to fit content */
-                position: relative; /* Remove from fixed position */
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-                padding: 30px 20px;
-            }
-        
-            .main-content {
-                margin-left: 0; /* Content now takes full width */
-                width: 100%;
-                padding: 40px 20px; /* Thinner padding for smaller screens */
-            }
-        
-            h3 {
-                font-size: 1.8rem; /* Smaller headers for mobile */
-                margin-bottom: 30px;
-            }
-        
-            .album-grid {
-                flex-wrap: wrap; /* Let album cards wrap to the next line */
-                justify-content: center;
-            }
-        
-            .timeline {
-                padding-left: 30px; /* Tighten up timeline space */
-            }
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; border-right: none; border-bottom: 1px solid var(--border); padding: 30px 20px; }
+            .main-content { margin-left: 0; width: 100%; padding: 40px 20px; }
+            h3 { font-size: 1.8rem; margin-bottom: 30px; }
+            .album-grid { flex-wrap: wrap; justify-content: center; }
+            .timeline { padding-left: 30px; }
+            .gallery-item { height: 350px; }
         }
     </style>
 </head>
@@ -134,13 +111,23 @@
             <img src="Images/Headshot.webp" alt="Hunter Gierhart" class="profile-img">
             <h1>Hunter Gierhart</h1>
         </div>
-        <h2>About</h2>
-        <p class="bio-text">Versatile music industry professional with a Data Analytics certificate from Columbia University. Expertise in crafting data-driven campaigns for major record labels and driving streaming growth up to 300% YoY.</p>
         
-        <h2>Skills</h2>
-        <div class="tag-container">
-            <span class="pill">Snowflake</span><span class="pill">SQL</span><span class="pill">Python</span>
-            <span class="pill">Tableau</span><span class="pill">Data Analytics</span><span class="pill">Digital Marketing Strategy</span><span class="pill">Concert Photography</span><span class="pill">Adobe Creative Suite</span>
+        <h2>About</h2>
+        <p class="bio-text">Versatile music industry professional at the intersection of the creative and the analytical. Expertise in crafting data-driven campaigns for major record labels integrating technical skills and design principles.</p>
+        
+        <h2>Skills (Click to Filter)</h2>
+        <div class="tag-container" id="skill-filters">
+            <span class="pill" data-skill="Snowflake">Snowflake</span>
+            <span class="pill" data-skill="SQL">SQL</span>
+            <span class="pill" data-skill="Python">Python</span>
+            <span class="pill" data-skill="Tableau">Tableau</span>
+            <span class="pill" data-skill="Data Analytics">Data Analytics</span>
+            <span class="pill" data-skill="Digital Marketing Strategy">Digital Marketing</span>
+            <span class="pill" data-skill="AI & Automation">AI & Automation</span>
+            <span class="pill" data-skill="SEO">SEO</span>
+            <span class="pill" data-skill="Concert Photography">Concert Photography</span>
+            <span class="pill" data-skill="Adobe Creative Suite">Adobe Creative Suite</span>
+            
         </div>
 
         <h2>Education</h2>
@@ -158,19 +145,23 @@
 
     <main class="main-content">
         <section id="experience">
-            <h3>Experience</h3>
+            <h3>Timeline</h3>
             <div class="timeline">
                 
-                <div class="timeline-item">
-                    <div class="company-header"><img src="Images/ADA_logo.webp" alt="ADA Logo" class="company-logo"><div><div class="role">Senior Manager, International Commercial Marketing</div><div class="company">Warner Music Group | ADA</div></div></div>
+                <div class="timeline-item" data-skills="Python, SQL, Snowflake, AI & Automation">
+                    <div class="company-header"><img src="Images/ADA_logo.webp" class="company-logo"><div><div class="role">Senior Manager, Int. Commercial Marketing</div><div class="company">Warner Music Group | ADA</div></div></div>
                     <div class="duration">April 2026 – Present</div>
-                    <ul class="description-list">
-                        <li>Develop global trade approaches to improve streaming consumption for ADA’s US repertoire in external markets.</li>
-                        <li>Build and manage relationships with affiliate label commerce teams at ADA/WMG and international DSP partners.</li>
-                    </ul>
+                    <ul class="description-list"><li>Develop global trade approaches to improve streaming consumption for ADA’s US repertoire in external markets.</li>
+                    <li>Build and manage relationships with affiliate label commerce teams at ADA/WMG and international DSP partners.</li></ul>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item project" data-skills="SEO, Python, Digital Marketing, AI & Automation, Adobe Creative Suite">
+                    <div class="company-header"><img src="Images/Spotify_Logo.webp" class="company-logo"><div><div class="role">Independent Spotify Playlisting</div><div class="company">Personal Project</div></div></div>
+                    <div class="duration">2025</div>
+                    <ul class="description-list"><li>Curated an independent playlist following of over 50,000, generating eight figure stream counts using data analysis via Spotify's API.</li></ul>
+                </div>
+
+                <div class="timeline-item" data-skills="Python, SQL, Snowflake, SEO, Tableau, Digital Marketing, Adobe Creative Suite">
                     <div class="company-header"><img src="Images/warner_music_group_logo.webp" alt="Warner Logo" class="company-logo"><div><div class="role">Manager, US Editorial and Marketing</div><div class="company">Warner Music Group</div></div></div>
                     <div class="duration">Feb 2025 – April 2026</div>
                     <ul class="description-list">
@@ -186,7 +177,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item" data-skills="Python, SQL, Snowflake, AI & Automation">
                     <div class="company-header"><img src="Images/sony_music_entertainment_logo.webp" alt="Sony Logo" class="company-logo"><div><div class="role">Coordinator, Partner Relations</div><div class="company">Sony Music Entertainment</div></div></div>
                     <div class="duration">July 2024 – Dec 2024</div>
                     <ul class="description-list">
@@ -200,7 +191,7 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item" data-skills="Python, SQL, Snowflake, Tableau, Digital Marketing, AI & Automation, Adobe Creative Suite">
                     <div class="company-header"><img src="Images/sony_music_entertainment_logo.webp" alt="Sony Logo" class="company-logo"><div><div class="role">Coordinator, Central Commercial Partnerships</div><div class="company">Sony Music Entertainment</div></div></div>
                     <div class="duration">Jan 2023 – July 2024</div>
                     <ul class="description-list">
@@ -214,7 +205,13 @@
                     </div>
                 </div>
 
-                <div class="timeline-item">
+				<div class="timeline-item education" data-skills="Python, SQL, Snowflake,  AI & Automation, Tableau">
+                    <div class="company-header"><img src="Images/Columbia_Logo.webp" class="company-logo"><div><div class="role">Data Analytics Certificate</div><div class="company">Columbia University</div></div></div>
+                    <div class="duration">2022</div>
+                    <ul class="description-list"><li>Intensive program focused on SQL, Python, and Tableau applications.</li></ul>
+                </div>
+
+                <div class="timeline-item" data-skills="Tableau, Python, SQL, Digital Marketing, Adobe Creative Suite">
                     <div class="company-header"><img src="Images/mascot_records_logo.webp" alt="Mascot Logo" class="company-logo"><div><div class="role">Coordinator, Digital Marketing</div><div class="company">Mascot Label Group</div></div></div>
                     <div class="duration">April 2021 – Jan 2023</div>
                     <ul class="description-list">
@@ -229,7 +226,7 @@
                     </div>
                 </div>
                 
-                <div class="timeline-item">
+                <div class="timeline-item" data-skills="SEO, Digital Marketing, Adobe Creative Suite">
                     <div class="company-header"><img src="Images/every-life-well-logo.webp" alt="Every Life Well" class="company-logo"><div><div class="role">Assistant,  Marketing</div><div class="company">Every Life Well</div></div></div>
                     <div class="duration">July 2019 – Mar 2021</div>
                     <ul class="description-list">
@@ -238,44 +235,87 @@
                     </ul>
                     
                 </div>
+
+                <div class="timeline-item education" data-skills="PLACEHOLDER">
+                    <div class="company-header"><img src="Images/UT_Logo.webp" class="company-logo"><div><div class="role">B.A. Plan II Honors</div><div class="company">University of Texas at Austin</div></div></div>
+                    <div class="duration">2015 - 2019</div>
+                </div>
                 
-                <div class="timeline-item">
+                <div class="timeline-item" data-skills="Digital Marketing">
                     <div class="company-header"><img src="Images/musx.webp" alt="Musx Logo" class="company-logo"><div><div class="role">Intern, Music</div><div class="company">musx</div></div></div>
                     <div class="duration">Feb 2017 – May 2017</div>
                     <div class="description">Developed playlists and expanded analytics directly with the CEO.</div>
                 </div>
 
-                <div class="timeline-item">
+                <div class="timeline-item" data-skills="SEO">
                     <div class="company-header"><img src="Images/DailyTexan.webp" alt="Daily Texan Logo" class="company-logo"><div><div class="role">Issue, Life and Arts</div><div class="company">The Daily Texan</div></div></div>
                     <div class="duration">Jan 2016 – May 2016</div>
                     <div class="description">Published album reviews and interviews for the UT Austin student publication.</div>
                 </div>    
-                    
+                
+                <div class="timeline-item education" data-skills="PLACEHOLDER">
+                    <div class="company-header"><img src="Images/NOCCA_Logo.webp" class="company-logo"><div><div class="role">Classical and Jazz Trombone</div><div class="company">New Orleans Center for Creative Arts</div></div></div>
+                    <div class="duration">2011 - 2015</div>
+                    <div class="description">2015 recepient of Presidential Honors and the Moses S. Hogan award for excellence in Classical Instrumental performance.</div>
                 </div>
+
             </div>
         </section>
 
         <section id="gallery">
             <h3>Concert Gallery</h3>
-            <div class="gallery-container" id="autoGallery">
-                <div class="gallery-item"><img src="Images/MUNA.webp"></div><div class="gallery-item"><img src="Images/Artemas-Red.webp"></div>
-                <div class="gallery-item"><img src="Images/ArloParks.webp"></div><div class="gallery-item"><img src="Images/CarlyRae-ACL.webp"></div>
-                <div class="gallery-item"><img src="Images/CarlyRae-GovBall21.webp"></div><div class="gallery-item"><img src="Images/Charlixcx.webp"></div>
-                <div class="gallery-item"><img src="Images/Artemas-Purple.webp"></div><div class="gallery-item"><img src="Images/FKA-Gold.webp"></div>
-                <div class="gallery-item"><img src="Images/CarlyRae-Flash.webp"></div><div class="gallery-item"><img src="Images/JessieWare.webp"></div>
+            <div class="gallery-viewport">
+                <div class="gallery-container" id="infiniteGallery">
+                  <div class="gallery-item"><img src="Images/MUNA.webp"></div><div class="gallery-item"><img src="Images/Artemas-Red.webp"></div>
+                  <div class="gallery-item"><img src="Images/ArloParks.webp"></div><div class="gallery-item"><img src="Images/CarlyRae-ACL.webp"></div>
+                  <div class="gallery-item"><img src="Images/CarlyRae-GovBall21.webp"></div><div class="gallery-item"><img src="Images/Charlixcx.webp"></div>
+                  <div class="gallery-item"><img src="Images/Artemas-Purple.webp"></div><div class="gallery-item"><img src="Images/FKA-Gold.webp"></div>
+                  <div class="gallery-item"><img src="Images/CarlyRae-Flash.webp"></div><div class="gallery-item"><img src="Images/JessieWare.webp"></div>
+                </div>
             </div>
         </section>
     </main>
 
     <script>
-        const gallery = document.getElementById('autoGallery');
-        setInterval(() => {
-            if (gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth - 10) {
-                gallery.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                gallery.scrollBy({ left: 400, behavior: 'smooth' });
-            }
-        }, 5000);
+        // --- INFINITE SCROLL ---
+        const scrollContainer = document.getElementById('infiniteGallery');
+        const scrollContent = [...scrollContainer.children];
+        scrollContent.forEach(item => {
+            const clone = item.cloneNode(true);
+            scrollContainer.appendChild(clone);
+        });
+
+        let scrollPos = 0;
+        function animate() {
+            scrollPos += 0.8; // Speed
+            if (scrollPos >= scrollContainer.scrollWidth / 2) scrollPos = 0;
+            scrollContainer.style.transform = `translateX(-${scrollPos}px)`;
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // --- SKILL FILTERING ---
+        const filters = document.querySelectorAll('#skill-filters .pill');
+        const items = document.querySelectorAll('.timeline-item');
+
+        filters.forEach(filter => {
+            filter.addEventListener('click', () => {
+                const selectedSkill = filter.getAttribute('data-skill');
+                
+                if (filter.classList.contains('active')) {
+                    filter.classList.remove('active');
+                    items.forEach(item => item.classList.remove('dimmed'));
+                } else {
+                    filters.forEach(f => f.classList.remove('active'));
+                    filter.classList.add('active');
+                    
+                    items.forEach(item => {
+                        const itemSkills = item.getAttribute('data-skills') || "";
+                        itemSkills.includes(selectedSkill) ? item.classList.remove('dimmed') : item.classList.add('dimmed');
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
