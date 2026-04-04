@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunter Gierhart | Music Marketing & Data Strategy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --sidebar-bg: #121212;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --accent: #c27a1d; 
+            --border: #282828;
+            --sidebar-width: 340px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-dark); color: var(--text-main); display: flex; min-height: 100vh; }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: var(--sidebar-width); height: 100vh; background-color: var(--sidebar-bg);
+            padding: 50px 30px; position: fixed; overflow-y: auto; border-right: 1px solid var(--border); z-index: 10;
+        }
+        .profile-header { text-align: center; margin-bottom: 40px; }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); margin-bottom: 15px; }
+        .sidebar h1 { font-size: 1.5rem; letter-spacing: -0.5px; }
+        .sidebar h2 { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-top: 35px; margin-bottom: 15px; letter-spacing: 1.5px; }
+        .bio-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; }
+        .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
+        .pill { padding: 6px 14px; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; color: var(--text-main); text-decoration: none; transition: all 0.2s ease; }
+        .pill:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* --- MAIN CONTENT --- */
+        .main-content { margin-left: var(--sidebar-width); padding: 80px; width: calc(100% - var(--sidebar-width)); }
+        section { margin-bottom: 120px; }
+        h3 { font-size: 2.5rem; margin-bottom: 50px; font-weight: 600; }
+
+        /* --- TIMELINE --- */
+        .timeline { position: relative; padding-left: 40px; border-left: 1px solid var(--border); }
+        .timeline-item { position: relative; margin-bottom: 80px; }
+        .timeline-item::before { content: ''; position: absolute; left: -45px; top: 12px; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; }
+        .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+        .logo-placeholder {width: 45px; height: 45px; object-fit: contain; /* Ensures logos aren't stretched */ background: transparent; border-radius: 4px; flex-shrink: 0;}
+        .role { font-size: 1.2rem; font-weight: 600; }
+        .company { color: var(--accent); font-size: 1rem; }
+        .duration { font-size: 0.85rem; color: var(--text-dim); margin-top: 4px; margin-bottom: 12px; }
+        
+        .description-list { font-size: 0.95rem; color: var(--text-dim); max-width: 750px; line-height: 1.7; margin-bottom: 25px; padding-left: 18px; }
+        .description-list li { margin-bottom: 8px; }
+
+        /* --- ALBUM FLIP CARDS --- */
+        .album-grid { display: flex; gap: 20px; margin-top: 20px; }
+        .flip-card { background-color: transparent; width: 120px; height: 120px; perspective: 1000px; }
+        .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 4px; overflow: hidden; }
+        .flip-card-front img { width: 100%; height: 100%; object-fit: cover; background: #222; }
+        .flip-card-back { background-color: var(--accent); color: black; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 10px; font-size: 0.7rem; font-weight: 600; }
+
+        /* --- GALLERY --- */
+        .gallery-container { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 30px; scroll-behavior: smooth; scrollbar-width: none; }
+        .gallery-container::-webkit-scrollbar { display: none; }
+        .gallery-item { flex: 0 0 auto; height: 500px; }
+        .gallery-item img { height: 100%; width: auto; display: block; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="profile-header">
+            <img src="Images/Headshot.webp" alt="Hunter Gierhart" class="profile-img">
+            <h1>Hunter Gierhart</h1>
+        </div>
+        <h2>About</h2>
+        <p class="bio-text">Versatile music industry professional with a Data Analytics certificate from Columbia University. Expertise in crafting data-driven campaigns for major record labels and driving streaming growth up to 300% YoY.</p>
+        
+        <h2>Skills</h2>
+        <div class="tag-container">
+            <span class="pill">Snowflake</span><span class="pill">SQL</span><span class="pill">Python</span>
+            <span class="pill">Tableau</span><span class="pill">Google Analytics</span><span class="pill">Digital Strategy</span>
+        </div>
+
+        <h2>Certifications</h2>
+        <div class="tag-container">
+            <span class="pill">Columbia: Data Analytics</span><span class="pill">NYU: Music Industry Essentials</span>
+        </div>
+
+        <h2>Contact</h2>
+        <div class="tag-container">
+            <a href="mailto:huntersgierhart@gmail.com" class="pill">Email</a>
+            <a href="https://www.linkedin.com/in/hunter-gierhart" class="pill">LinkedIn</a>
+            <a href="#" class="pill">GitHub</a><a href="#" class="pill">Instagram</a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <section id="experience">
+            <h3>Experience</h3>
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="company-header"><img src="Images/ADA_logo.webp" alt="ADA Logo" class="company-logo"><div><div class="role">Senior Manager, International Commercial Marketing</div><div class="company">Warner Music Group | ADA</div></div></div>
+                    <div class="duration">April 2026 – Present</div>
+                    <ul class="description-list">
+                        <li>Leading distribution-focused marketing initiatives and partner strategy.</li>
+                        <li>Driving independent artist growth through data-backed marketing funnels.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="company-header"><img src="Images/warner_music_group_logo.webp" alt="Warner Logo" class="company-logo"><div><div class="role">Manager, US Editorial and Marketing</div><div class="company">Warner Music Group</div></div></div>
+                    <div class="duration">Feb 2025 – March 2026</div>
+                    <ul class="description-list">
+                        <li>Executed marketing for superstar acts including Cardi B and Bruno Mars.</li>
+                        <li>Automated playlist research via Python/Spotify API, reducing manual workflow by 70%.</li>
+                    </ul>
+                    <div class="album-grid">
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/TheRomantic.webp"></div><div class="flip-card-back">Bruno Mars: Strategic playlist strategy, driving 10M+ streams and 60k follower growth during release week. </div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/PrideParty.webp"></div><div class="flip-card-back">Pride Party: Led integrated marketing partnerships with WeHo Pride and LadyLand festival.</div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/Madonna.webp"></div><div class="flip-card-back">Madonna: Optimized artist playlists in collaboration with management</div></div></div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="company-header"><img src="Images/sony_music_entertainment_logo.webp" alt="Sony Logo" class="company-logo"><div><div class="company">Sony Music Entertainment</div></div></div>
+                    <div class="duration">July 2024 – Dec 2024</div>
+                    <ul class="description-list">
+                        <li>Led cross-label DSP partnerships for Arista and Columbia Records.</li>
+                        <li>Orchestrated features for priority releases through strategic partner pitching.</li>
+                    </ul>
+                    <div class="album-grid">
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/Addison.webp"></div><div class="flip-card-back">Addison Rae: Pitched singles to DSPs</div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/chromakopia.webp"></div><div class="flip-card-back">Tyler, The Creator: Late delivery logistics and pitching</div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/LeonBridges.webp"></div><div class="flip-card-back">Leon Bridges: Coordinated assets for Apple Music Zane Lowe interview</div></div></div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="company-header"><img src="Images/sony_music_entertainment_logo.webp" alt="Sony Logo" class="company-logo"><div><div class="role">Coordinator, Central Commercial Partnerships</div><div class="company">Sony Music Entertainment</div></div></div>
+                    <div class="duration">Jan 2023 – July 2024</div>
+                    <ul class="description-list">
+                        <li>Analyzed streaming consumption data via Python and Excel for growth opportunities.</li>
+                        <li>Devised strategies for the Filtr brand, increasing consumption by 300% YoY.</li>
+                    </ul>
+                    <div class="album-grid">
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/Tyla.webp"></div><div class="flip-card-back">Tyla: Filtr editorial partnership</div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/CowboyCarter.webp"></div><div class="flip-card-back">Beyoncé: Release Coordination</div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/Utopia.webp"></div><div class="flip-card-back">Travis Scott: Late delivery logistics</div></div></div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="company-header"><img src="Images/mascot_records_logo.webp" alt="Mascot Logo" class="company-logo"><div><div class="role">Coordinator, Digital Marketing</div><div class="company">Mascot Label Group</div></div></div>
+                    <div class="duration">April 2021 – Jan 2023</div>
+                    <ul class="description-list">
+                        <li>Managed international digital campaigns and improved advertising CTRs by 20%.</li>
+                        <li>Drove follower growth of up to 370% through social platform best practices.</li>
+                    </ul>
+                    <div class="album-grid">
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/EricGales.webp"></div><div class="flip-card-back">Eric Gales: Digital Ads</div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/BethHart.webp"></div><div class="flip-card-back">Beth Hart: Social Growth</div></div></div>
+                        <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/Crobot.webp"></div><div class="flip-card-back">Crobot: Asset creation (Spotify canvases, socials)</div></div></div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="company-header"><img src="Images/musx.webp" alt="Musx Logo" class="company-logo"><div><div class="role">Intern, Music</div><div class="company">musx</div></div></div>
+                    <div class="duration">Feb 2017 – May 2017</div>
+                    <div class="description">Developed playlists and expanded analytics directly with the CEO.</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="company-header"><img src="Images/DailyTexan.webp" alt="Daily Texan Logo" class="company-logo"><div><div class="role">Issue, Life and Arts</div><div class="company">The Daily Texan</div></div></div>
+                    <div class="duration">Jan 2016 – May 2016</div>
+                    <div class="description">Published album reviews and interviews for the UT Austin publication.</div>
+                </div>    
+                    
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h3>Concert Gallery</h3>
+            <div class="gallery-container" id="autoGallery">
+                <div class="gallery-item"><img src="Images/concert1.jpg"></div><div class="gallery-item"><img src="Images/concert2.jpg"></div>
+                <div class="gallery-item"><img src="Images/concert3.jpg"></div><div class="gallery-item"><img src="Images/concert4.jpg"></div>
+                <div class="gallery-item"><img src="Images/concert5.jpg"></div><div class="gallery-item"><img src="Images/concert6.jpg"></div>
+                <div class="gallery-item"><img src="Images/concert7.jpg"></div><div class="gallery-item"><img src="Images/concert8.jpg"></div>
+                <div class="gallery-item"><img src="Images/concert9.jpg"></div><div class="gallery-item"><img src="Images/concert10.jpg"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const gallery = document.getElementById('autoGallery');
+        setInterval(() => {
+            if (gallery.scrollLeft >= gallery.scrollWidth - gallery.clientWidth - 10) {
+                gallery.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                gallery.scrollBy({ left: 400, behavior: 'smooth' });
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
