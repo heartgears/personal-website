@@ -11,7 +11,8 @@
             --sidebar-bg: #121212;
             --text-main: #ffffff;
             --text-dim: #a0a0a0;
-            --accent: #c27a1d; 
+            --accent: #FA7921;
+            --albumback: #FE9920;
             --border: #282828;
             --sidebar-width: 340px;
         }
@@ -28,7 +29,7 @@
         .profile-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); margin-bottom: 15px; }
         .sidebar h1 { font-size: 1.5rem; letter-spacing: -0.5px; }
         .sidebar h2 { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-top: 35px; margin-bottom: 15px; letter-spacing: 1.5px; }
-        .bio-text { font-size: 0.9rem; color: var(--text-dim); line-height: 1.6; margin-bottom: 20px; }
+        .bio-text { font-size: 0.9rem; color: var(--text-main); line-height: 1.6; margin-bottom: 20px; }
         .tag-container { display: flex; flex-wrap: wrap; gap: 8px; }
         .pill { padding: 6px 14px; border: 1px solid var(--border); border-radius: 50px; font-size: 0.75rem; color: var(--text-main); text-decoration: none; transition: all 0.2s ease; }
         .pill:hover { border-color: var(--accent); color: var(--accent); }
@@ -42,7 +43,19 @@
         .timeline { position: relative; padding-left: 40px; border-left: 1px solid var(--border); }
         .timeline-item { position: relative; margin-bottom: 80px; }
         .timeline-item::before { content: ''; position: absolute; left: -45px; top: 12px; width: 9px; height: 9px; background: var(--accent); border-radius: 50%; }
-        .company-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+        .company-header {display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
+        
+        /* Updated Logo Constraints */
+        .company-logo { 
+            width: 45px; 
+            height: 45px; 
+            max-width: 45px;
+            max-height: 45px;
+            object-fit: contain; 
+            background: transparent; 
+            flex-shrink: 0;
+        }
+        
         .logo-placeholder {width: 45px; height: 45px; object-fit: contain; /* Ensures logos aren't stretched */ background: transparent; border-radius: 4px; flex-shrink: 0;}
         .role { font-size: 1.2rem; font-weight: 600; }
         .company { color: var(--accent); font-size: 1rem; }
@@ -58,7 +71,7 @@
         .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
         .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 4px; overflow: hidden; }
         .flip-card-front img { width: 100%; height: 100%; object-fit: cover; background: #222; }
-        .flip-card-back { background-color: var(--accent); color: black; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 10px; font-size: 0.7rem; font-weight: 600; }
+        .flip-card-back { background-color: var(--albumback); color: black; transform: rotateY(180deg); display: flex; align-items: center; justify-content: center; padding: 10px; font-size: 0.7rem; font-weight: 600; }
 
         /* --- GALLERY --- */
         .gallery-container { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 30px; scroll-behavior: smooth; scrollbar-width: none; }
@@ -80,12 +93,12 @@
         <h2>Skills</h2>
         <div class="tag-container">
             <span class="pill">Snowflake</span><span class="pill">SQL</span><span class="pill">Python</span>
-            <span class="pill">Tableau</span><span class="pill">Google Analytics</span><span class="pill">Digital Strategy</span>
+            <span class="pill">Tableau</span><span class="pill">Data Analytics</span><span class="pill">Digital Marketing Strategy</span><span class="pill">Concert Photography</span><span class="pill">Adobe Creative Suite</span>
         </div>
 
-        <h2>Certifications</h2>
+        <h2>Education</h2>
         <div class="tag-container">
-            <span class="pill">Columbia: Data Analytics</span><span class="pill">NYU: Music Industry Essentials</span>
+            <span class="pill">Columbia: Data Analytics</span><span class="pill">NYU: Music Industry Essentials</span><span class="pill">UT Austin: Bachelors, Plan II Honors</span>
         </div>
 
         <h2>Contact</h2>
@@ -112,10 +125,12 @@
 
                 <div class="timeline-item">
                     <div class="company-header"><img src="Images/warner_music_group_logo.webp" alt="Warner Logo" class="company-logo"><div><div class="role">Manager, US Editorial and Marketing</div><div class="company">Warner Music Group</div></div></div>
-                    <div class="duration">Feb 2025 – March 2026</div>
+                    <div class="duration">Feb 2025 – April 2026</div>
                     <ul class="description-list">
-                        <li>Executed marketing for superstar acts including Cardi B and Bruno Mars.</li>
+                        <li>Lead the Topsify US team on cross-functional marketing campaign execution in partnership with WMG label teams (Atlantic Records, ADA, etc.), artist management, and external partners.</li>
                         <li>Automated playlist research via Python/Spotify API, reducing manual workflow by 70%.</li>
+                        <li>Align global viral marketing strategies with local market insights.</li>
+                        <li>Developed playlist marketing strategies for superstar acts like Bruno Mars, Benson Boone, Cardi B, Madonna and more.</li>
                     </ul>
                     <div class="album-grid">
                         <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/TheRomantic.webp"></div><div class="flip-card-back">Bruno Mars: Strategic playlist strategy, driving 10M+ streams and 60k follower growth during release week. </div></div></div>
@@ -125,10 +140,10 @@
                 </div>
 
                 <div class="timeline-item">
-                    <div class="company-header"><img src="Images/sony_music_entertainment_logo.webp" alt="Sony Logo" class="company-logo"><div><div class="company">Sony Music Entertainment</div></div></div>
+                    <div class="company-header"><img src="Images/sony_music_entertainment_logo.webp" alt="Sony Logo" class="company-logo"><div><div class="role">Coordinator, Partner Relations</div><div class="company">Sony Music Entertainment</div></div></div>
                     <div class="duration">July 2024 – Dec 2024</div>
                     <ul class="description-list">
-                        <li>Led cross-label DSP partnerships for Arista and Columbia Records.</li>
+                        <li>Led cross-label DSP partnerships, including Fitness, Social, Gaming, and Jukebox accounts for Legacy, Columbia, and Arista Records.</li>
                         <li>Orchestrated features for priority releases through strategic partner pitching.</li>
                     </ul>
                     <div class="album-grid">
@@ -143,7 +158,7 @@
                     <div class="duration">Jan 2023 – July 2024</div>
                     <ul class="description-list">
                         <li>Analyzed streaming consumption data via Python and Excel for growth opportunities.</li>
-                        <li>Devised strategies for the Filtr brand, increasing consumption by 300% YoY.</li>
+                        <li>Devised marketing strategies for the Filtr playlisting brand, increasing streaming consumption by up to 300% YoY.</li>
                     </ul>
                     <div class="album-grid">
                         <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><img src="Images/Tyla.webp"></div><div class="flip-card-back">Tyla: Filtr editorial partnership</div></div></div>
@@ -156,6 +171,7 @@
                     <div class="company-header"><img src="Images/mascot_records_logo.webp" alt="Mascot Logo" class="company-logo"><div><div class="role">Coordinator, Digital Marketing</div><div class="company">Mascot Label Group</div></div></div>
                     <div class="duration">April 2021 – Jan 2023</div>
                     <ul class="description-list">
+                        <li>Designed media aligned with the artist's creative vision.</li>
                         <li>Managed international digital campaigns and improved advertising CTRs by 20%.</li>
                         <li>Drove follower growth of up to 370% through social platform best practices.</li>
                     </ul>
@@ -167,6 +183,16 @@
                 </div>
                 
                 <div class="timeline-item">
+                    <div class="company-header"><img src="Images/every-life-well-logo.webp" alt="Every Life Well" class="company-logo"><div><div class="role">Assistant,  Marketing</div><div class="company">Every Life Well</div></div></div>
+                    <div class="duration">July 2019 – Mar 2021</div>
+                    <ul class="description-list">
+                        <li>Assessed SEO marketing growth potential for  products.</li>
+                        <li>Collaborated with product management to build and launch a new Shopify webstore.</li>
+                    </ul>
+                    
+                </div>
+                
+                <div class="timeline-item">
                     <div class="company-header"><img src="Images/musx.webp" alt="Musx Logo" class="company-logo"><div><div class="role">Intern, Music</div><div class="company">musx</div></div></div>
                     <div class="duration">Feb 2017 – May 2017</div>
                     <div class="description">Developed playlists and expanded analytics directly with the CEO.</div>
@@ -175,7 +201,7 @@
                 <div class="timeline-item">
                     <div class="company-header"><img src="Images/DailyTexan.webp" alt="Daily Texan Logo" class="company-logo"><div><div class="role">Issue, Life and Arts</div><div class="company">The Daily Texan</div></div></div>
                     <div class="duration">Jan 2016 – May 2016</div>
-                    <div class="description">Published album reviews and interviews for the UT Austin publication.</div>
+                    <div class="description">Published album reviews and interviews for the UT Austin student publication.</div>
                 </div>    
                     
                 </div>
@@ -185,11 +211,11 @@
         <section id="gallery">
             <h3>Concert Gallery</h3>
             <div class="gallery-container" id="autoGallery">
-                <div class="gallery-item"><img src="Images/concert1.jpg"></div><div class="gallery-item"><img src="Images/concert2.jpg"></div>
-                <div class="gallery-item"><img src="Images/concert3.jpg"></div><div class="gallery-item"><img src="Images/concert4.jpg"></div>
-                <div class="gallery-item"><img src="Images/concert5.jpg"></div><div class="gallery-item"><img src="Images/concert6.jpg"></div>
-                <div class="gallery-item"><img src="Images/concert7.jpg"></div><div class="gallery-item"><img src="Images/concert8.jpg"></div>
-                <div class="gallery-item"><img src="Images/concert9.jpg"></div><div class="gallery-item"><img src="Images/concert10.jpg"></div>
+                <div class="gallery-item"><img src="Images/concert1.jpg"></div><div class="gallery-item"><img src="Images/Artemas-Red.webp"></div>
+                <div class="gallery-item"><img src="Images/concert3.jpg"></div><div class="gallery-item"><img src="Images/CarlyRae-ACL.webp"></div>
+                <div class="gallery-item"><img src="Images/concert5.jpg"></div><div class="gallery-item"><img src="Images/Charlixcx.webp"></div>
+                <div class="gallery-item"><img src="Images/concert7.jpg"></div><div class="gallery-item"><img src="Images/FKA-Gold.webp"></div>
+                <div class="gallery-item"><img src="Images/concert9.jpg"></div><div class="gallery-item"><img src="Images/JessieWare.webp"></div>
             </div>
         </section>
     </main>
