@@ -78,6 +78,42 @@
         .gallery-container::-webkit-scrollbar { display: none; }
         .gallery-item { flex: 0 0 auto; height: 500px; }
         .gallery-item img { height: 100%; width: auto; display: block; border-radius: 4px; }
+
+        /* --- MOBILE RESPONSIVENESS --- */
+        @media (max-width: 850px) {
+            body {
+                flex-direction: column; /* Stack sidebar on top of content */
+            }
+        
+            .sidebar {
+                width: 100%;
+                height: auto; /* Let it shrink to fit content */
+                position: relative; /* Remove from fixed position */
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding: 30px 20px;
+            }
+        
+            .main-content {
+                margin-left: 0; /* Content now takes full width */
+                width: 100%;
+                padding: 40px 20px; /* Thinner padding for smaller screens */
+            }
+        
+            h3 {
+                font-size: 1.8rem; /* Smaller headers for mobile */
+                margin-bottom: 30px;
+            }
+        
+            .album-grid {
+                flex-wrap: wrap; /* Let album cards wrap to the next line */
+                justify-content: center;
+            }
+        
+            .timeline {
+                padding-left: 30px; /* Tighten up timeline space */
+            }
+        }
     </style>
 </head>
 <body>
@@ -211,11 +247,11 @@
         <section id="gallery">
             <h3>Concert Gallery</h3>
             <div class="gallery-container" id="autoGallery">
-                <div class="gallery-item"><img src="Images/concert1.jpg"></div><div class="gallery-item"><img src="Images/Artemas-Red.webp"></div>
-                <div class="gallery-item"><img src="Images/concert3.jpg"></div><div class="gallery-item"><img src="Images/CarlyRae-ACL.webp"></div>
-                <div class="gallery-item"><img src="Images/concert5.jpg"></div><div class="gallery-item"><img src="Images/Charlixcx.webp"></div>
-                <div class="gallery-item"><img src="Images/concert7.jpg"></div><div class="gallery-item"><img src="Images/FKA-Gold.webp"></div>
-                <div class="gallery-item"><img src="Images/concert9.jpg"></div><div class="gallery-item"><img src="Images/JessieWare.webp"></div>
+                <div class="gallery-item"><img src="Images/MUNA.webp.jpg"></div><div class="gallery-item"><img src="Images/Artemas-Red.webp"></div>
+                <div class="gallery-item"><img src="Images/ArloParks.webp.jpg"></div><div class="gallery-item"><img src="Images/CarlyRae-ACL.webp"></div>
+                <div class="gallery-item"><img src="Images/CarlyRae-GovBall21.webp.jpg"></div><div class="gallery-item"><img src="Images/Charlixcx.webp"></div>
+                <div class="gallery-item"><img src="Images/Artemas-Purple.webp.jpg"></div><div class="gallery-item"><img src="Images/FKA-Gold.webp"></div>
+                <div class="gallery-item"><img src="Images/CarlyRae-Flash.webp.jpg"></div><div class="gallery-item"><img src="Images/JessieWare.webp"></div>
             </div>
         </section>
     </main>
